@@ -1,19 +1,24 @@
 import { Routes, Route } from "react-router-dom"
 import MainLayout from "./layout/MainLayout.jsx"
-import HomePage from "./pages/Home.Page.jsx"
+import Home from "./pages/Home.Page.jsx"
+import VideoDetail from "./pages/VideoDetail.Page.jsx"
+import Tweets from "./pages/Tweets.Page.jsx"
+import Login from "./pages/Login.Page.jsx"
+import Signup from "./pages/Signup.Page.jsx"
 
 function App() {
   return (
     <Routes>
       {/* Public/Main Routes with Sidebar & Navbar */}
       <Route path="/" element={<MainLayout />}>
-        <Route index element={<HomePage/>} />
-        {/* Baaki routes jaise /tweets yahan aayenge */}
+        <Route index element={<Home/>} />
+        <Route path="video/:videoId" element={<VideoDetail/>} />
+        <Route path="tweets" element={<Tweets/>} />
       </Route>
 
       {/* Auth Routes bina Sidebar ke */}
-      <Route path="/login" element={<h1>Login Page</h1>} />
-      <Route path="/signup" element={<h1>Signup Page</h1>} />
+      <Route path="/login" element={<Login/>} />
+      <Route path="/signup" element={<Signup/>} />
     </Routes>
   )
 }

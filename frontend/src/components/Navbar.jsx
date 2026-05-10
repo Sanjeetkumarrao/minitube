@@ -1,7 +1,13 @@
 import React from 'react'
 import { Search, Video, Bell, UserCircle, Menu } from 'lucide-react'
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+    const navigate = useNavigate();
+
+    const handleLogin = () =>{
+        navigate(`/login`)
+    }
   return (
     <nav className="h-16 bg-[#0F0F0F] flex items-center justify-between px-4 sticky top-0 z-50 border-b border-gray-800">
       {/* Left Section: Logo & Menu */}
@@ -41,9 +47,17 @@ const Navbar = () => {
         <button className="p-2 hover:bg-gray-800 rounded-full hidden md:block">
           <Bell className="text-white w-6 h-6" />
         </button>
-        <div className="ml-2 cursor-pointer border-2 border-transparent hover:border-gray-500 rounded-full transition-all">
-           {/* Yahan user ka avatar aayega baad mein */}
-          <UserCircle className="text-white w-8 h-8" />
+        <div className="group relative ml-2">
+            <div className="cursor-pointer border-2 border-transparent hover:border-gray-500 rounded-full transition-all">
+            <UserCircle
+            onClick={handleLogin}
+            className="text-white w-8 h-8" />
+            </div>
+            
+            {/* Tooltip Card */}
+            <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 bg-gray-700 text-white text-xs px-3 py-1.5 rounded shadow-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-[60]">
+            Sign up / Login
+            </span>
         </div>
       </div>
     </nav>
