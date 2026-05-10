@@ -59,6 +59,10 @@ userSchema.pre("save", async function () {
 })
 
 userSchema.methods.isPasswordCorrect = async function(password){
+    if (!password || !this.password) {
+    throw new Error("Data or hash missing for comparison");
+    }
+
     return await bcrypt.compare(password, this.password)
 }
 
