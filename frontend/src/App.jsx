@@ -1,10 +1,19 @@
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import HomePage from './pages/Home.Page.jsx'
+import { Routes, Route } from "react-router-dom"
+import MainLayout from "./layout/MainLayout.jsx"
+import HomePage from "./pages/Home.Page.jsx"
 
 function App() {
   return (
     <Routes>
-      <Route path='/' element={<HomePage/>} ></Route>
+      {/* Public/Main Routes with Sidebar & Navbar */}
+      <Route path="/" element={<MainLayout />}>
+        <Route index element={<HomePage/>} />
+        {/* Baaki routes jaise /tweets yahan aayenge */}
+      </Route>
+
+      {/* Auth Routes bina Sidebar ke */}
+      <Route path="/login" element={<h1>Login Page</h1>} />
+      <Route path="/signup" element={<h1>Signup Page</h1>} />
     </Routes>
   )
 }
