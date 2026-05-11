@@ -5,6 +5,7 @@ import VideoDetail from "./pages/VideoDetail.Page.jsx"
 import Tweets from "./pages/Tweets.Page.jsx"
 import Login from "./pages/Login.Page.jsx"
 import Signup from "./pages/Signup.Page.jsx"
+import Profile from "./pages/Profile.Page.jsx"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route index element={<Home/>} />
         <Route path="video/:videoId" element={<VideoDetail/>} />
         <Route path="tweets" element={<Tweets/>} />
+        <Route path="c/:username" element={<Profile/>} />
       </Route>
 
       {/* Auth Routes bina Sidebar ke */}

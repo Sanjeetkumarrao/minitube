@@ -83,7 +83,7 @@ const Navbar = () => {
                                     </div>
                                     <button 
                                         className="w-full flex items-center gap-3 p-3 text-white hover:bg-[#2A2A2A] transition-colors text-sm"
-                                        onClick={() => navigate('/profile')}
+                                        onClick={() => navigate(`/c/${user?.username}`)}
                                     >
                                         <UserIcon size={18} /> Profile
                                     </button>
