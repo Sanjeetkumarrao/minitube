@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Video, Eye, EyeOff, Loader2, CheckCircle2 } from 'lucide-react';
-import axiosInstance from '../utils/axios.js';
+import { useAuth } from '../context/AuthContext'; // 1. Context import kiya
 
 const Login = () => {
     const navigate = useNavigate();
+    const { login } = useAuth(); // 2. login function context se nikala
     
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -19,38 +20,31 @@ const Login = () => {
         e.preventDefault();
         setLoading(true);
 
-        try {
-            const loginData = {
-                // Backend controller ke according hum username/email dono bhej rahe hain
-                username: formData.username,
-                email: formData.username, 
-                password: formData.password
-            };
+        // Login data prepare kiya
+        const loginData = {
+            username: formData.username,
+            email: formData.username, 
+            password: formData.password
+        };
 
-            const response = await axiosInstance.post("/users/login", loginData);
-            
-            if (response.data.success) {
-                // SUCCESS: User ka data localStorage mein save kar rahe hain
-                // response.data.data.user wo object hai jo backend bhej raha hai
-                localStorage.setItem("user", JSON.stringify(response.data.data.user));
-                
-                setIsSuccess(true);
-                
-                setTimeout(() => {
-                    navigate("/"); 
-                    // Page refresh handle karne ke liye window.location use kar sakte hain
-                    // par abhi ke liye navigate hi rehne dete hain
-                }, 1500);
-            }
-        } catch (error) {
-            console.error("Login Error:", error.response?.data?.message || error.message);
-            alert(error.response?.data?.message || "Invalid credentials. Please try again.");
+        // 3. Context wala login call kiya
+        const result = await login(loginData);
+
+        if (result.success) {
+            setIsSuccess(true);
+            setTimeout(() => {
+                navigate("/"); 
+            }, 1500);
+        } else {
+            // Agar login fail ho jaye
+            alert(result.message || "Invalid credentials");
             setLoading(false);
         }
     };
 
     return (
         <div className="min-h-screen bg-[#0F0F0F] flex items-center justify-center p-4">
+            {/* Design Background Blurs */}
             <div className="absolute w-64 h-64 bg-red-600/5 rounded-full blur-[100px] top-10 left-10"></div>
             <div className="absolute w-64 h-64 bg-blue-600/5 rounded-full blur-[100px] bottom-10 right-10"></div>
 

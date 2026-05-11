@@ -1,33 +1,22 @@
 import React from 'react'
 import { Search, Video, Bell, UserCircle, Menu, LogOut, User as UserIcon } from 'lucide-react'
 import { useNavigate } from 'react-router-dom';
-import axiosInstance from '../utils/axios.js';
+import { useAuth } from '../context/AuthContext'; 
 
 const Navbar = () => {
     const navigate = useNavigate();
-
-    // 1. LocalStorage se user check karo
-    const user = JSON.parse(localStorage.getItem("user"));
+    
+    // 1. Context se user, logout aur loading state nikalna
+    const { user, logout, loading } = useAuth();
 
     const handleLogin = () => {
         navigate(`/login`)
     }
 
-    // 2. Logout Handler
-const handleLogout = async () => {
-    try {
-        const response = await axiosInstance.post("/users/logout");
-        if (response.data.success) {
-            localStorage.removeItem("user"); 
-            
-            window.location.reload(); 
-        }
-    } catch (error) {
-        console.error("Logout Error:", error);
-        localStorage.removeItem("user");
-        window.location.reload();
-    }
-};
+    const handleLogout = async () => {
+        await logout(); 
+        // window.location.reload() ab context ke andar handle ho raha hai
+    };
 
     return (
         <nav className="h-16 bg-[#0F0F0F] flex items-center justify-between px-4 sticky top-0 z-50 border-b border-gray-800">
@@ -69,9 +58,12 @@ const handleLogout = async () => {
                     <Bell className="text-white w-6 h-6" />
                 </button>
 
-                {/* --- Conditional Rendering: User Profile / Login --- */}
-                <div className="group relative ml-2">
-                    {user ? (
+                {/* --- Conditional Rendering Based on Auth State --- */}
+                <div className="group relative ml-2 min-w-[32px]">
+                    {/* Agar auth check ho raha hai (loading), toh skeleton ya empty div dikhao */}
+                    {loading ? (
+                        <div className="w-8 h-8 rounded-full bg-gray-800 animate-pulse"></div>
+                    ) : user ? (
                         /* Logged In State: Show Avatar */
                         <div className="flex items-center">
                             <div className="w-9 h-9 rounded-full border-2 border-red-600 overflow-hidden cursor-pointer active:scale-95 transition-transform">
