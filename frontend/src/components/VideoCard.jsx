@@ -12,7 +12,6 @@ const VideoCard = ({ video }) => {
     <div 
     onClick={handleVideoClick}
     className="flex flex-col gap-3 cursor-pointer group">
-      {/* Thumbnail Container */}
       <div className="relative aspect-video rounded-xl overflow-hidden bg-[#272727]">
         <img 
           src={video?.thumbnail || "https://via.placeholder.com/320x180/121212/FFFFFF?text=StreamFlow"} 
@@ -24,9 +23,7 @@ const VideoCard = ({ video }) => {
         </span>
       </div>
 
-      {/* Video Details */}
       <div className="flex gap-3">
-        {/* Channel Avatar */}
         <div className="flex-shrink-0">
           <img 
             src={video?.owner?.avatar || "https://via.placeholder.com/36"} 
@@ -49,7 +46,6 @@ const VideoCard = ({ video }) => {
           </div>
         </div>
 
-        {/* Menu Icon */}
         <button className="h-fit p-1 hover:bg-gray-800 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
           <MoreVertical className="w-5 h-5 text-gray-400" />
         </button>

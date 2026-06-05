@@ -28,7 +28,6 @@ const Profile = () => {
         fetchChannelProfile();
     }, [username]);
 
-    // 1. Avatar Update Handler
     const handleAvatarChange = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
@@ -50,13 +49,12 @@ const Profile = () => {
         }
     };
 
-    // 2. Cover Image Update Handler
     const handleCoverChange = async (e) => {
         const file = e.target.files[0];
         if (!file) return;
 
         const formData = new FormData();
-        formData.append("coverImage", file); // Backend controller name match hona chahiye
+        formData.append("coverImage", file); 
 
         try {
             setUpdatingCover(true);
@@ -107,10 +105,8 @@ const Profile = () => {
                 )}
             </div>
 
-            {/* Profile Info Section */}
             <div className="max-w-7xl mx-auto px-4 md:px-10">
                 <div className="flex flex-col md:flex-row items-center md:items-end gap-6 relative mt-4 mb-8">
-                    {/* Avatar with Update Logic */}
                     <div className="relative group z-10">
                         <div className="w-32 h-32 md:w-44 md:h-44 rounded-full border-4 border-[#0F0F0F] overflow-hidden bg-gray-900 shadow-2xl">
                             {updatingAvatar ? (
@@ -129,7 +125,6 @@ const Profile = () => {
                         )}
                     </div>
 
-                    {/* Text Details - Spacing adjusted for overlap fix */}
                     <div className="flex-1 flex flex-col items-center md:items-start space-y-2 pb-4 text-center md:text-left pt-2 md:pt-0">
                         <h1 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white drop-shadow-lg">
                             {channel.fullName}
@@ -152,7 +147,6 @@ const Profile = () => {
                     </div>
                 </div>
 
-                {/* Tabs Section */}
                 <div className="border-b border-gray-800 flex gap-6 md:gap-10 text-sm font-bold tracking-widest mt-2 overflow-x-auto no-scrollbar">
                     <button className="border-b-2 border-white pb-4 px-2 whitespace-nowrap">VIDEOS</button>
                     <button className="text-gray-400 hover:text-white pb-4 px-2 transition-colors whitespace-nowrap">PLAYLISTS</button>
@@ -160,7 +154,6 @@ const Profile = () => {
                     <button className="text-gray-400 hover:text-white pb-4 px-2 transition-colors whitespace-nowrap">ABOUT</button>
                 </div>
 
-                {/* Videos Grid Placeholder */}
                 <div className="py-20 text-center flex flex-col items-center gap-4">
                     <div className="bg-gray-900 p-6 rounded-full">
                          <Video size={48} className="text-gray-600" />

@@ -10,7 +10,6 @@ import Profile from "./pages/Profile.Page.jsx"
 function App() {
   return (
     <Routes>
-      {/* Public/Main Routes with Sidebar & Navbar */}
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home/>} />
         <Route path="video/:videoId" element={<VideoDetail/>} />
@@ -18,7 +17,6 @@ function App() {
         <Route path="c/:username" element={<Profile/>} />
       </Route>
 
-      {/* Auth Routes bina Sidebar ke */}
       <Route path="/login" element={<Login/>} />
       <Route path="/signup" element={<Signup/>} />
     </Routes>

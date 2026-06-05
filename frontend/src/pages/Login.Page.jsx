@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Video, Eye, EyeOff, Loader2, CheckCircle2 } from 'lucide-react';
-import { useAuth } from '../context/AuthContext'; // 1. Context import kiya
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
     const navigate = useNavigate();
-    const { login } = useAuth(); // 2. login function context se nikala
+    const { login } = useAuth();
     
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -20,14 +20,12 @@ const Login = () => {
         e.preventDefault();
         setLoading(true);
 
-        // Login data prepare kiya
         const loginData = {
             username: formData.username,
             email: formData.username, 
             password: formData.password
         };
 
-        // 3. Context wala login call kiya
         const result = await login(loginData);
 
         if (result.success) {
@@ -36,7 +34,7 @@ const Login = () => {
                 navigate("/"); 
             }, 1500);
         } else {
-            // Agar login fail ho jaye
+            
             alert(result.message || "Invalid credentials");
             setLoading(false);
         }
@@ -44,7 +42,7 @@ const Login = () => {
 
     return (
         <div className="min-h-screen bg-[#0F0F0F] flex items-center justify-center p-4">
-            {/* Design Background Blurs */}
+           
             <div className="absolute w-64 h-64 bg-red-600/5 rounded-full blur-[100px] top-10 left-10"></div>
             <div className="absolute w-64 h-64 bg-blue-600/5 rounded-full blur-[100px] bottom-10 right-10"></div>
 

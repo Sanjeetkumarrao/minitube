@@ -7,12 +7,11 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // 1. Fetch Current User (App load hote hi check karega)
     const fetchCurrentUser = async () => {
         try {
             const response = await axiosInstance.get("/users/current-user");
             setUser(response.data.data);
-            // Sync with localStorage for safety
+            
             localStorage.setItem("user", JSON.stringify(response.data.data));
         } catch (error) {
             setUser(null);
@@ -22,7 +21,6 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    // 2. Login Function
     const login = async (loginData) => {
         try {
             const response = await axiosInstance.post("/users/login", loginData);
@@ -40,17 +38,16 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
-    // 3. Logout Function
     const logout = async () => {
         try {
             await axiosInstance.post("/users/logout");
         } catch (error) {
             console.error("Logout error:", error);
         } finally {
-            // Kuch bhi ho, local state aur storage saaf honi chahiye
+           
             setUser(null);
             localStorage.removeItem("user");
-            window.location.reload(); // UI reset karne ke liye
+            window.location.reload();
         }
     };
 
@@ -60,7 +57,6 @@ export const AuthProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider value={{ user, setUser, loading, fetchCurrentUser, login, logout }}>
-            {/* Jab tak loading true hai, tab tak app render na ho to behtar hai (blank screen ya spinner) */}
             {!loading && children}
         </AuthContext.Provider>
     );

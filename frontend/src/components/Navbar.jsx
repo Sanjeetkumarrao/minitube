@@ -6,7 +6,6 @@ import { useAuth } from '../context/AuthContext';
 const Navbar = () => {
     const navigate = useNavigate();
     
-    // 1. Context se user, logout aur loading state nikalna
     const { user, logout, loading } = useAuth();
 
     const handleLogin = () => {
@@ -15,12 +14,11 @@ const Navbar = () => {
 
     const handleLogout = async () => {
         await logout(); 
-        // window.location.reload() ab context ke andar handle ho raha hai
     };
 
     return (
         <nav className="h-16 bg-[#0F0F0F] flex items-center justify-between px-4 sticky top-0 z-50 border-b border-gray-800">
-            {/* Left Section: Logo & Menu */}
+
             <div className="flex items-center gap-4">
                 <button className="p-2 hover:bg-gray-800 rounded-full transition-all">
                     <Menu className="text-white w-6 h-6" />
@@ -35,7 +33,6 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Middle Section: Search Bar */}
             <div className="flex-1 max-w-[600px] hidden sm:flex items-center ml-10">
                 <div className="flex w-full bg-[#121212] border border-gray-700 rounded-full overflow-hidden focus-within:border-blue-500 transition-all">
                     <input
@@ -49,7 +46,6 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Right Section: Actions & User */}
             <div className="flex items-center gap-3">
                 <button className="p-2 hover:bg-gray-800 rounded-full hidden md:block">
                     <Video className="text-white w-6 h-6" />
@@ -58,13 +54,10 @@ const Navbar = () => {
                     <Bell className="text-white w-6 h-6" />
                 </button>
 
-                {/* --- Conditional Rendering Based on Auth State --- */}
                 <div className="group relative ml-2 min-w-[32px]">
-                    {/* Agar auth check ho raha hai (loading), toh skeleton ya empty div dikhao */}
                     {loading ? (
                         <div className="w-8 h-8 rounded-full bg-gray-800 animate-pulse"></div>
                     ) : user ? (
-                        /* Logged In State: Show Avatar */
                         <div className="flex items-center">
                             <div className="w-9 h-9 rounded-full border-2 border-red-600 overflow-hidden cursor-pointer active:scale-95 transition-transform">
                                 <img 
@@ -74,7 +67,6 @@ const Navbar = () => {
                                 />
                             </div>
 
-                            {/* Dropdown Menu on Hover */}
                             <div className="absolute right-0 top-full pt-2 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 z-[70]">
                                 <div className="w-56 bg-[#1A1A1A] border border-gray-700 rounded-xl shadow-2xl overflow-hidden">
                                     <div className="p-4 border-b border-gray-700">
@@ -97,7 +89,6 @@ const Navbar = () => {
                             </div>
                         </div>
                     ) : (
-                        /* Logged Out State: Show Login Icon */
                         <>
                             <div className="cursor-pointer border-2 border-transparent hover:border-gray-500 rounded-full transition-all">
                                 <UserCircle

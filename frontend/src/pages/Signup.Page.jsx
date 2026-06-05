@@ -6,10 +6,9 @@ import axiosInstance from '../utils/axios.js';
 const Signup = () => {
     const navigate = useNavigate();
     
-    // States for Form and UI flow
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [isSuccess, setIsSuccess] = useState(false); // Success state logic
+    const [isSuccess, setIsSuccess] = useState(false);
     
     const [formData, setFormData] = useState({
         fullName: "",
@@ -45,7 +44,6 @@ const Signup = () => {
                 // UI changes to Green
                 setIsSuccess(true);
                 
-                // Professional delay before redirect
                 setTimeout(() => {
                     navigate("/login");
                 }, 1500);
