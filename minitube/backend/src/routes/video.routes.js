@@ -8,11 +8,9 @@ import { upload } from "../middlewares/multer.middleware.js";
 
 const router = Router();
 
-// Public routes — bina login ke bhi accessible
 router.route("/").get(getAllVideos);
 router.route("/:videoId").get(getVideoById);
 
-// Protected routes — login required
 router.route("/").post(
   verifyJWT,
   upload.fields([

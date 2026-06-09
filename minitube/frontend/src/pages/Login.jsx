@@ -32,7 +32,9 @@ const Login = () => {
     <div className="w-full max-w-md px-6">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold">
-          <span className="text-primary">Mini</span>Tube
+          <Link to={"/"}>
+            <span className="text-primary">Mini</span>Tube
+          </Link>
         </h1>
         <p className="text-dark-muted mt-2">Sign in to your account</p>
       </div>

@@ -11,7 +11,6 @@ const getAllVideos = asyncHandler(async (req, res) => {
 
   const pipeline = [];
 
-  // Simple regex search
   if (query) {
     pipeline.push({
       $match: {

@@ -5,7 +5,6 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// Request interceptor
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("accessToken");
@@ -17,19 +16,12 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response interceptor - auto refresh token
-// ONLY retry if we actually have a token stored (user was logged in)
 api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
     const hasToken = localStorage.getItem("accessToken");
 
-    // Only attempt refresh if:
-    // 1. It's a 401 error
-    // 2. We haven't already retried
-    // 3. We actually have a token (user was logged in before)
-    // 4. It's not the current-user check itself (to avoid loops)
     if (
       error.response?.status === 401 &&
       !originalRequest._retry &&
