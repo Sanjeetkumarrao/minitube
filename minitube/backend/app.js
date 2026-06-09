@@ -7,7 +7,7 @@ const app = express();
 app.use(
   cors({
     // origin: "http://localhost:5173",
-    origin: "https://minitube-ojp01mz49-sanjeetkumarraos-projects.vercel.app",
+    origin: "https://minitube-git-main-sanjeetkumarraos-projects.vercel.app",
     credentials: true,
   })
 );
