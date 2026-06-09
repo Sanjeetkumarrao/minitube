@@ -12,7 +12,6 @@ const AuthLayout = () => {
     );
   }
 
-  // Agar already logged in hai toh home pe bhejo
   return user ? <Navigate to="/" replace /> : (
     <div className="min-h-screen bg-dark-bg flex items-center justify-center">
       <Outlet />
