@@ -74,12 +74,12 @@ const Register = () => {
 
         <div>
           <label className="block text-sm font-medium mb-1.5">Full Name</label>
-          <input name="fullName" value={form.fullName} onChange={handleChange} placeholder="John Doe" required className="input" />
+          <input name="fullName" value={form.fullName} onChange={handleChange} placeholder="Enter yuor name" required className="input" />
         </div>
 
         <div>
           <label className="block text-sm font-medium mb-1.5">Username</label>
-          <input name="username" value={form.username} onChange={handleChange} placeholder="johndoe" required className="input" />
+          <input name="username" value={form.username} onChange={handleChange} placeholder="username" required className="input" />
         </div>
 
         <div>
@@ -89,7 +89,7 @@ const Register = () => {
 
         <div>
           <label className="block text-sm font-medium mb-1.5">Password</label>
-          <input name="password" type="password" value={form.password} onChange={handleChange} placeholder="••••••••" required className="input" />
+          <input name="password" type="password" value={form.password} onChange={handleChange} placeholder="password" required className="input" />
         </div>
 
         <div>
