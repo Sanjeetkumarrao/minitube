@@ -6,7 +6,8 @@ const app = express();
 
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN,
+    // origin: "http://localhost:5173",
+    origin: "minitube-6bol2iffx-sanjeetkumarraos-projects.vercel.app",
     credentials: true,
   })
 );
