@@ -2,7 +2,7 @@ import axios from "axios";
 
 const api = axios.create({
   // baseURL: "/api/v1",
-  baseURL: "https://minitube-0h5y.onrender.com/api/v1",
+  baseURL: "https://minitube-l2w7.onrender.com/api/v1",
   withCredentials: true,
 });
 
